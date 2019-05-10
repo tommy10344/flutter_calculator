@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'calculator.dart';
+import 'calculator_button.dart';
 
 void main() => runApp(MyApp());
 
@@ -97,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget numberButton(int number) {
-    return button(
+    return CalculatorButton(
         number.toString(),
         Theme.of(context).primaryColor,
             () { numberPressed(number); }
@@ -106,22 +107,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget equalButton() {
     var color = Theme.of(context).accentColor;
-    return button("=", color, () { equalPressed(); });
+    return CalculatorButton("=", color, () { equalPressed(); });
   }
 
   Widget signButton(Sign sign) {
     var color = Theme.of(context).accentColor;
     switch (sign) {
       case Sign.plus:
-        return button("+", color, () { plusPressed(); });
+        return CalculatorButton("+", color, () { plusPressed(); });
       case Sign.minus:
-        return button("-", color, () { minusPressed(); });
+        return CalculatorButton("-", color, () { minusPressed(); });
     }
   }
 
   Widget clearButton() {
     var color = Colors.grey;
-    return button(
+    return CalculatorButton(
         "C",
         color,
             () { clearPressed(); }
@@ -130,28 +131,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget allClearButton() {
     var color = Colors.grey;
-    return button(
+    return CalculatorButton(
         "AC",
         color,
             () { allClearPressed(); }
-    );
-  }
-
-  Widget button(String text, Color color, VoidCallback onPressed) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: FlatButton(
-        onPressed: onPressed,
-        child: Center(
-            child: Text(
-              text,
-              style: TextStyle(color: Colors.white, fontSize: 28),
-            )
-        ),
-        shape: new CircleBorder(),
-        color: color,
-        padding: const EdgeInsets.all(16.0),
-      ),
     );
   }
 
